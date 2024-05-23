@@ -1,39 +1,37 @@
 # backend-assesment
 
-##Library Management System
+Library Management System
 This is a Library Management System built using Node.js, Express, and MongoDB. The system allows users to manage books, borrow records, and generate reports on book borrowing activities.
 
 ##Table of Contents
-##Features
-##Installation
-##Usage
-##API Endpoints
-##Reports
-##Middleware
-##License
-Features
-User authentication and authorization
-CRUD operations for books
-Borrow and return books
-Generate reports on most borrowed books, active members, and book availability
-Installation
-Clone the repository:
+-Features
+-Installation
+-Usage
+-API Endpoints
+-Reports
+-Middleware
+-License
+-Features
+-User authentication and authorization
+-CRUD operations for books
+-Borrow and return books
+-Generate reports on most borrowed books, active members, and book availability
+-Installation
+-Clone the repository:
 
 sh
 Copy code
-git clone https://github.com/your-username/library-management-system.git
-cd library-management-system
+git clone https://github.com/Akash-sharma-au51/backend-assesment/tree/main
+cd backend-assesment
 Install dependencies:
 
-sh
-Copy code
 npm install
 Set up environment variables:
 
 Create a .env file in the root directory and add the following:
 
 env
-Copy code
+
 MONGODB_URI=mongodb://localhost:27017/library
 JWT_SECRET=your_jwt_secret
 Start the application:
@@ -164,5 +162,3 @@ Copy code
 const authorizeAdmin = async (req, res, next) => {
     // Implementation
 };
-License
-This project is licensed under the MIT License.
