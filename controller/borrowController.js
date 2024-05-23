@@ -1,5 +1,5 @@
 const Borrow = require('../model/borrowModel'); 
-const mongoose = require('mongoose');
+
 
 // Create a new borrowing record
 const createBorrowRecord = async (req, res) => {
@@ -61,5 +61,24 @@ const deleteBorrowRecord = async (req, res) => {
     }
 };
 
-module.exports = {createBorrowRecord,getAllBorrowRecords,getBorrowRecordById,updateBorrowRecord,deleteBorrowRecord}
+// getting most borrowed books
+const getMostBorrowedBooks = async (req, res) => {
+    try {
+        const mostBorrowedBooks = await Borrow.aggregate([
+            { $match: { active: true } }, // Only count active borrow records
+            { $group: { _id: "$bookId", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: 10 }, 
+            { $lookup: { from: 'books', localField: '_id', foreignField: '_id', as: 'book' } },
+            { $unwind: "$book" },
+            { $project: { _id: 0, bookId: "$_id", bookName: "$book.book_name", count: 1 } }
+        ]);
+
+        res.status(200).json(mostBorrowedBooks);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = {createBorrowRecord,getAllBorrowRecords,getBorrowRecordById,updateBorrowRecord,deleteBorrowRecord,getMostBorrowedBooks}
 

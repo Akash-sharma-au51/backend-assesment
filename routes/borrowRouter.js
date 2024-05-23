@@ -1,4 +1,4 @@
-const {createBorrowRecord,getAllBorrowRecords,getBorrowRecordById,updateBorrowRecord,deleteBorrowRecord} = require("../controller/borrowController")
+const {createBorrowRecord,getAllBorrowRecords,getBorrowRecordById,updateBorrowRecord,deleteBorrowRecord,getMostBorrowedBooks} = require("../controller/borrowController")
 const loginAuthorize = require("../middleware/authMiddleware")
 const authourize = require("../middleware/authorize")
 
@@ -9,6 +9,7 @@ const router = express.Router()
 router.post("/create",loginAuthorize,authourize,createBorrowRecord)
 router.get("/",loginAuthorize,authourize,getAllBorrowRecords)
 router.get("/:id",loginAuthorize,authourize,getBorrowRecordById)
+router.get("/mostborrowedbook",loginAuthorize,authourize,getMostBorrowedBooks)
 router.put('/update/:id',loginAuthorize,authourize,updateBorrowRecord)
 router.delete("/delete/:id",loginAuthorize,authourize,deleteBorrowRecord)
 
