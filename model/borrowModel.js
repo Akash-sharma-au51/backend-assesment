@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema; 
 
-const borrowSchema = new mongoose.Schema({
-    userId: { type: Schema.Types.ObjectId, ref: 'user', required: true },
-    bookId: { type: Schema.Types.ObjectId, ref: 'book', required: true },
+const borrowSchema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }, 
+    bookId: { type: Schema.Types.ObjectId, ref: 'Book', required: true },
     purchaseDate: { type: Date, default: Date.now },
     active: { type: Boolean, default: true }
 }, { timestamps: true });
 
-const Borrow = mongoose.model('Borrow',borrowSchema)
+const Borrow = mongoose.model('Borrow', borrowSchema);
 
-module.exports = Borrow
+module.exports = Borrow;
